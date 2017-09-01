@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <ApplicationIcon />
+    <OutputType>Exe</OutputType>
+    <StartupObject />
+    <AssemblyName>morganize</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Input.csv" />
+    <None Remove="Output.csv" />
+  </ItemGroup>
+  
+</Project>
