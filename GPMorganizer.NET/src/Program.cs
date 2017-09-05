@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -18,6 +19,8 @@ namespace GPMornanizer.NET
                 return;
             }
 
+            var stopWatch = new Stopwatch();
+            stopWatch.Start();
             List<ReportEntry> entries = new List<ReportEntry>();
 
             using (var fs = new FileStream(args[0], FileMode.Open))
@@ -55,7 +58,7 @@ namespace GPMornanizer.NET
                     sw.Write($"{ip.Key.ToString()},");
 
                     // Select reputation if there is an entry for that date.
-                    var rowItems = dates.Select(date=>
+                    var rowItems = dates.Select(date =>
                     {
                         var entry = ip.FirstOrDefault(item => item.EntryDate == date);
 
@@ -63,13 +66,15 @@ namespace GPMornanizer.NET
                     });
 
                     // Create the CSV row of data.
-                    string rowData = String.Join(",", rowItems);                         
+                    string rowData = String.Join(",", rowItems);
 
                     sw.WriteLine(rowData);
                 }
-
-                Console.WriteLine("Processing complete.");
             }
+
+            stopWatch.Stop();
+            Console.WriteLine($"Processed {entries.Count} in {stopWatch.Elapsed.TotalSeconds} seconds. Press any key to quit.");
+            Console.ReadKey();
         }
     }
 }

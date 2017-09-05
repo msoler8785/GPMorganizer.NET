@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "GPMorganizer.NET": {
+      "commandName": "Project",
+      "commandLineArgs": "Input.csv",
+      "workingDirectory": "bin\\Debug\\netcoreapp2.0"
+    }
+  }
+}
